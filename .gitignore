@@ -3,3 +3,10 @@ finetuned_flant5
 swmprojectsqlnet
 swmtest
 spider_data
+
+# Ignore all SQLite database files
+*.sqlite
+*.db
+
+# Ignore temp files
+temp_*
