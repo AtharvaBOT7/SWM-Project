@@ -1,0 +1,79 @@
+[
+  {
+    "database": "dorm_1",
+    "total_available": 100,
+    "examples_used": 50,
+    "test_file": "test_visualizations/test_dorm_1.jsonl",
+    "db_file": "spider_data/database/dorm_1/dorm_1.sqlite"
+  },
+  {
+    "database": "allergy_1",
+    "total_available": 98,
+    "examples_used": 50,
+    "test_file": "test_visualizations/test_allergy_1.jsonl",
+    "db_file": "spider_data/database/allergy_1/allergy_1.sqlite"
+  },
+  {
+    "database": "movie_1",
+    "total_available": 98,
+    "examples_used": 50,
+    "test_file": "test_visualizations/test_movie_1.jsonl",
+    "db_file": "spider_data/database/movie_1/movie_1.sqlite"
+  },
+  {
+    "database": "flight_1",
+    "total_available": 96,
+    "examples_used": 50,
+    "test_file": "test_visualizations/test_flight_1.jsonl",
+    "db_file": "spider_data/database/flight_1/flight_1.sqlite"
+  },
+  {
+    "database": "driving_school",
+    "total_available": 93,
+    "examples_used": 50,
+    "test_file": "test_visualizations/test_driving_school.jsonl",
+    "db_file": "spider_data/database/driving_school/driving_school.sqlite"
+  },
+  {
+    "database": "cre_Doc_Tracking_DB",
+    "total_available": 90,
+    "examples_used": 50,
+    "test_file": "test_visualizations/test_cre_Doc_Tracking_DB.jsonl",
+    "db_file": "spider_data/database/cre_Doc_Tracking_DB/cre_Doc_Tracking_DB.sqlite"
+  },
+  {
+    "database": "department_store",
+    "total_available": 88,
+    "examples_used": 50,
+    "test_file": "test_visualizations/test_department_store.jsonl",
+    "db_file": "spider_data/database/department_store/department_store.sqlite"
+  },
+  {
+    "database": "customers_and_addresses",
+    "total_available": 88,
+    "examples_used": 50,
+    "test_file": "test_visualizations/test_customers_and_addresses.jsonl",
+    "db_file": "spider_data/database/customers_and_addresses/customers_and_addresses.sqlite"
+  },
+  {
+    "database": "activity_1",
+    "total_available": 88,
+    "examples_used": 50,
+    "test_file": "test_visualizations/test_activity_1.jsonl",
+    "db_file": "spider_data/database/activity_1/activity_1.sqlite"
+  },
+  {
+    "database": "network_2",
+    "total_available": 86,
+    "examples_used": 50,
+    "test_file": "test_visualizations/test_network_2.jsonl",
+    "db_file": "spider_data/database/network_2/network_2.sqlite"
+  },
+  {
+    "database": "products_gen_characteristics",
+    "total_available": 86,
+    "examples_used": 50,
+    "test_file": "test_visualizations/test_products_gen_characteristics.jsonl",
+    "db_file": "spider_data/database/products_gen_characteristics/products_gen_characteristics.sqlite"
+  }
+]
