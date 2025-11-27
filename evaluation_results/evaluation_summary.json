@@ -1,0 +1,101 @@
+[
+  {
+    "database": "activity_1",
+    "examples": 50,
+    "em": 0.6,
+    "ex": 0.88,
+    "valid": 0.96,
+    "median_latency_ms": 2181.025981903076,
+    "results_file": "evaluation_results/results_activity_1.csv"
+  },
+  {
+    "database": "allergy_1",
+    "examples": 50,
+    "em": 0.62,
+    "ex": 0.94,
+    "valid": 1.0,
+    "median_latency_ms": 1652.4088382720947,
+    "results_file": "evaluation_results/results_allergy_1.csv"
+  },
+  {
+    "database": "cre_Doc_Tracking_DB",
+    "examples": 50,
+    "em": 0.74,
+    "ex": 0.88,
+    "valid": 0.9,
+    "median_latency_ms": 2326.051950454712,
+    "results_file": "evaluation_results/results_cre_Doc_Tracking_DB.csv"
+  },
+  {
+    "database": "customers_and_addresses",
+    "examples": 50,
+    "em": 0.54,
+    "ex": 0.78,
+    "valid": 0.86,
+    "median_latency_ms": 4475.461006164551,
+    "results_file": "evaluation_results/results_customers_and_addresses.csv"
+  },
+  {
+    "database": "department_store",
+    "examples": 50,
+    "em": 0.58,
+    "ex": 0.7,
+    "valid": 0.74,
+    "median_latency_ms": 4757.886171340942,
+    "results_file": "evaluation_results/results_department_store.csv"
+  },
+  {
+    "database": "dorm_1",
+    "examples": 50,
+    "em": 0.72,
+    "ex": 0.84,
+    "valid": 0.94,
+    "median_latency_ms": 2718.5280323028564,
+    "results_file": "evaluation_results/results_dorm_1.csv"
+  },
+  {
+    "database": "driving_school",
+    "examples": 50,
+    "em": 0.92,
+    "ex": 0.94,
+    "valid": 0.96,
+    "median_latency_ms": 4419.6648597717285,
+    "results_file": "evaluation_results/results_driving_school.csv"
+  },
+  {
+    "database": "flight_1",
+    "examples": 50,
+    "em": 0.96,
+    "ex": 0.96,
+    "valid": 1.0,
+    "median_latency_ms": 2180.49693107605,
+    "results_file": "evaluation_results/results_flight_1.csv"
+  },
+  {
+    "database": "movie_1",
+    "examples": 50,
+    "em": 0.38,
+    "ex": 0.6,
+    "valid": 0.7,
+    "median_latency_ms": 3614.1231060028076,
+    "results_file": "evaluation_results/results_movie_1.csv"
+  },
+  {
+    "database": "network_2",
+    "examples": 50,
+    "em": 0.64,
+    "ex": 0.8,
+    "valid": 0.94,
+    "median_latency_ms": 2389.232873916626,
+    "results_file": "evaluation_results/results_network_2.csv"
+  },
+  {
+    "database": "products_gen_characteristics",
+    "examples": 50,
+    "em": 0.7,
+    "ex": 0.82,
+    "valid": 0.88,
+    "median_latency_ms": 5511.276006698608,
+    "results_file": "evaluation_results/results_products_gen_characteristics.csv"
+  }
+]
