@@ -7,11 +7,11 @@ It includes both a backend (Flask-based) and a frontend (Streamlit interface) fo
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 Follow these steps to clone the repository, set up your environment, and run the Streamlit application.
 
-### 1️⃣ Clone the Repository
+### 1. Clone the Repository
 
 ```bash
 gh repo clone AtharvaBOT7/SWM-Project
@@ -20,7 +20,7 @@ cd SWM-Project-main
 
 ---
 
-### 2️⃣ Create a Virtual Environment
+### 2. Create a Virtual Environment
 
 Create a Python virtual environment (Python 3.10 is recommended):
 
@@ -44,7 +44,7 @@ venv\Scripts\activate
 
 ---
 
-### 3️⃣ Verify Python Version
+### 3. Verify Python Version
 
 Check that the correct Python version from your virtual environment is active:
 
@@ -56,7 +56,7 @@ It should point to the path inside your `venv/` directory.
 
 ---
 
-### 4️⃣ Install Dependencies
+### 4. Install Dependencies
 
 Install all required packages using `requirements.txt`:
 
@@ -66,7 +66,7 @@ pip install -r requirements.txt
 
 ---
 
-### 5️⃣ Run the Application
+### 5. Run the Application
 
 Start the Streamlit frontend:
 
@@ -76,5 +76,3 @@ streamlit run frontend.py
 
 ---
 
-
-Would you like me to add a short **“Troubleshooting”** section too (e.g., common Streamlit or environment setup issues)? It’s often helpful for classmates or reviewers running your project.
