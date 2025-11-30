@@ -14,7 +14,7 @@ Follow these steps to clone the repository, set up your environment, and run the
 ### 1. Clone the Repository
 
 ```bash
-gh repo clone AtharvaBOT7/SWM-Project
+git clone AtharvaBOT7/SWM-Project
 cd SWM-Project-main
 ```
 
