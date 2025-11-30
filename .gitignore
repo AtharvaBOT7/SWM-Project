@@ -6,7 +6,6 @@ spider_data
 finetuned_flant5.zip
 
 # Ignore all SQLite database files
-*.sqlite
 *.db
 
 # Ignore temp files
