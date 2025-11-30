@@ -5,22 +5,18 @@ import torch
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 from pathlib import Path
 import time
-
 # ============================================================
 # PAGE CONFIGURATION
 # ============================================================
-
 st.set_page_config(
     page_title="Text-to-SQL Demo",
-    page_icon="🤖",
+    page_icon="⚡",
     layout="wide",
     initial_sidebar_state="expanded"
 )
-
 # ============================================================
 # CUSTOM CSS
 # ============================================================
-
 st.markdown("""
 <style>
     .main-header {
@@ -68,28 +64,20 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
-
 # ============================================================
 # HEADER
 # ============================================================
-
-st.markdown('<div class="main-header">🤖 Text-to-SQL Demo</div>', unsafe_allow_html=True)
+st.markdown('<div class="main-header">Text-to-SQL Demo</div>', unsafe_allow_html=True)
 st.markdown('<div class="sub-header">Fine-tuned Flan-T5 Model for Natural Language to SQL Translation</div>', unsafe_allow_html=True)
-
 # ============================================================
 # CONFIGURATION
 # ============================================================
-
 PROMPT_TEMPLATE = """Question: {question}
-
 Schema:
 {schema}
-
 SQL:"""
-
 # Model paths - adjust these to your setup
 MODEL_PATH = "finetuned_flant5/final_model"
-
 # Database examples with schemas
 DATABASE_SCHEMAS = {
     "hospital_1": """Database: hospital_1
@@ -148,7 +136,6 @@ Tables:
 - playlist_track(playlist_id*, track_id)
 - playlists(id*, name)"""
 }
-
 # Example questions for each database
 EXAMPLE_QUESTIONS = {
     "hospital_1": [
@@ -180,11 +167,9 @@ EXAMPLE_QUESTIONS = {
         "What is the total revenue by country?"
     ]
 }
-
 # ============================================================
 # LOAD MODEL (with caching)
 # ============================================================
-
 @st.cache_resource
 def load_model():
     """Load the fine-tuned model and tokenizer"""
@@ -197,14 +182,12 @@ def load_model():
             model.eval()
         return model, tokenizer, device
     except Exception as e:
-        st.error(f"❌ Error loading model: {str(e)}")
-        st.info("💡 Make sure the model path is correct: `finetuned_flant5/final_model`")
+        st.error(f"Error loading model: {str(e)}")
+        st.info("Make sure the model path is correct: `finetuned_flant5/final_model`")
         return None, None, None
-
 # ============================================================
 # SQL GENERATION FUNCTION
 # ============================================================
-
 def generate_sql(question, schema, model, tokenizer, device):
     """Generate SQL query from natural language question"""
     
@@ -241,11 +224,9 @@ def generate_sql(question, schema, model, tokenizer, device):
         sql += ';'
     
     return sql, generation_time
-
 # ============================================================
 # SCHEMA EXTRACTION FUNCTION
 # ============================================================
-
 def extract_schema_from_db(db_path):
     """Automatically extract schema from SQLite database"""
     try:
@@ -305,11 +286,9 @@ def extract_schema_from_db(db_path):
         
     except Exception as e:
         return None, str(e)
-
 # ============================================================
 # EXECUTE SQL FUNCTION
 # ============================================================
-
 def execute_sql(sql, db_path):
     """Execute SQL query and return results"""
     try:
@@ -319,13 +298,11 @@ def execute_sql(sql, db_path):
         return df, None
     except Exception as e:
         return None, str(e)
-
 # ============================================================
 # SIDEBAR
 # ============================================================
-
 with st.sidebar:
-    st.header("⚙️ Configuration")
+    st.header("Configuration")
     
     # Database selection mode
     db_mode = st.radio(
@@ -344,25 +321,25 @@ with st.sidebar:
     else:
         selected_db = "custom"
         custom_mode = True
-        st.info("📤 Upload your SQLite database below to auto-extract schema")
+        st.info("Upload your SQLite database below to auto-extract schema")
     
     st.markdown("---")
     
     # Show schema
     if not custom_mode:
-        with st.expander("📋 View Database Schema", expanded=False):
+        with st.expander("View Database Schema", expanded=False):
             st.code(DATABASE_SCHEMAS[selected_db], language="text")
     elif 'custom_schema' in st.session_state:
-        with st.expander("📋 View Extracted Schema", expanded=True):
+        with st.expander("View Extracted Schema", expanded=True):
             st.code(st.session_state.custom_schema, language="text")
     
     st.markdown("---")
     
     # Model info
-    st.subheader("🤖 Model Information")
+    st.subheader("Model Information")
     st.info("""
-    **Model:** Fine-tuned Flan-T5  
-    **Base:** juierror/flan-t5-text2sql-with-schema-v2  
+    **Model:** Flan-T5 Base (Google)  
+    **Base:** google/flan-t5-base  
     **Training:** 8,559 examples  
     **Performance:**
     - Exact Match: 37%
@@ -373,7 +350,7 @@ with st.sidebar:
     st.markdown("---")
     
     # About
-    st.subheader("ℹ️ About")
+    st.subheader("About")
     st.markdown("""
     This demo showcases a fine-tuned Flan-T5 model 
     that translates natural language questions into 
@@ -386,26 +363,19 @@ with st.sidebar:
     - Music Store
     - **Custom Upload:** Any SQLite database!
     """)
-
 # ============================================================
 # MAIN CONTENT
 # ============================================================
-
 # Load model
 model, tokenizer, device = load_model()
-
 if model is None:
     st.stop()
-
-st.success("✅ Model loaded successfully!")
-
+st.success("Model loaded successfully!")
 # Database file upload or selection
-st.subheader("📁 Database Connection")
-
+st.subheader("Database Connection")
 if not custom_mode:
     # Pre-defined database mode
     col1, col2 = st.columns([3, 1])
-
     with col1:
         db_file = st.file_uploader(
             f"Upload {selected_db}.sqlite database file",
@@ -413,10 +383,8 @@ if not custom_mode:
             help="Upload the corresponding SQLite database file",
             key="predefined_db_upload"
         )
-
     with col2:
         st.metric("Selected DB", selected_db)
-
     # Save uploaded file temporarily
     db_path = None
     current_schema = DATABASE_SCHEMAS[selected_db]
@@ -425,11 +393,10 @@ if not custom_mode:
         db_path = f"temp_{selected_db}.sqlite"
         with open(db_path, "wb") as f:
             f.write(db_file.getbuffer())
-        st.success(f"✅ Database loaded: {selected_db}")
-
+        st.success(f"Database loaded: {selected_db}")
 else:
     # Custom database mode
-    st.info("📤 Upload your SQLite database and we'll automatically extract the schema!")
+    st.info("Upload your SQLite database and we'll automatically extract the schema!")
     
     db_file = st.file_uploader(
         "Upload Custom SQLite Database",
@@ -450,11 +417,11 @@ else:
             f.write(db_file.getbuffer())
         
         # Extract schema
-        with st.spinner("🔍 Extracting database schema..."):
+        with st.spinner("Extracting database schema..."):
             schema, error = extract_schema_from_db(db_path)
             
             if error:
-                st.error(f"❌ Error extracting schema: {error}")
+                st.error(f"Error extracting schema: {error}")
                 db_path = None
             else:
                 current_schema = schema
@@ -476,26 +443,22 @@ else:
                 with col3:
                     st.metric("Database", db_name)
                 
-                st.success(f"✅ Schema extracted successfully from {db_file.name}!")
+                st.success(f"Schema extracted successfully from {db_file.name}!")
                 
                 # Show extracted schema
-                with st.expander("📋 View Extracted Schema", expanded=True):
+                with st.expander("View Extracted Schema", expanded=True):
                     st.code(schema, language="text")
-
 st.markdown("---")
-
 # Query interface
-st.subheader("💬 Ask a Question")
-
+st.subheader("Ask a Question")
 # Example questions (only for pre-defined databases)
 if not custom_mode:
-    st.markdown("**📌 Try these example questions:**")
+    st.markdown("**Try these example questions:**")
     cols = st.columns(5)
     for idx, example in enumerate(EXAMPLE_QUESTIONS[selected_db]):
         with cols[idx]:
             if st.button(f"Q{idx+1}", help=example, use_container_width=True):
                 st.session_state.question = example
-
 # Question input
 question = st.text_area(
     "Enter your question in natural language:",
@@ -503,19 +466,17 @@ question = st.text_area(
     height=100,
     placeholder="e.g., How many records are in the main table?" if custom_mode else "e.g., How many physicians are there?"
 )
-
 # Show selected example question tooltip
 if not custom_mode and question in EXAMPLE_QUESTIONS[selected_db]:
-    st.info(f"💡 Example question selected")
-
+    st.info(f"Example question selected")
 # Generate SQL button
-if st.button("🚀 Generate SQL", type="primary", use_container_width=True):
+if st.button("Generate SQL", type="primary", use_container_width=True):
     if not question:
-        st.warning("⚠️ Please enter a question first!")
+        st.warning("Please enter a question first!")
     elif custom_mode and current_schema is None:
-        st.warning("⚠️ Please upload a database first!")
+        st.warning("Please upload a database first!")
     elif not custom_mode and current_schema is None:
-        st.warning("⚠️ Schema not available. Please select a valid database!")
+        st.warning("Schema not available. Please select a valid database!")
     else:
         with st.spinner("Generating SQL query..."):
             # Generate SQL
@@ -530,7 +491,12 @@ if st.button("🚀 Generate SQL", type="primary", use_container_width=True):
             # Store in session state
             st.session_state.generated_sql = sql
             st.session_state.generation_time = gen_time
-
+            
+            # Auto-execute if database is available
+            if db_path:
+                with st.spinner("Executing query..."):
+                    df, error = execute_sql(sql, db_path)
+                    st.session_state.execution_result = (df, error)
 # Display results if SQL was generated
 if 'generated_sql' in st.session_state:
     st.markdown("---")
@@ -550,48 +516,42 @@ if 'generated_sql' in st.session_state:
         st.metric("Database", display_db)
     
     # Generated SQL
-    st.subheader("📝 Generated SQL Query")
+    st.subheader("Generated SQL Query")
     st.code(st.session_state.generated_sql, language="sql")
     
-    # Execute query if database is loaded
-    if db_path:
-        col1, col2 = st.columns([1, 4])
+    # Display execution results if available
+    if 'execution_result' in st.session_state:
+        df, error = st.session_state.execution_result
         
-        with col1:
-            execute_button = st.button("▶️ Execute Query", use_container_width=True)
-        
-        if execute_button:
-            with st.spinner("Executing query..."):
-                df, error = execute_sql(st.session_state.generated_sql, db_path)
+        if error:
+            st.markdown(f'<div class="error-box"><strong>Execution Error:</strong><br>{error}</div>', unsafe_allow_html=True)
+        else:
+            st.markdown('<div class="success-box">Query executed successfully!</div>', unsafe_allow_html=True)
+            
+            # Display results
+            st.subheader("Query Results")
+            
+            if len(df) == 0:
+                st.info("Query returned no results.")
+            else:
+                # Show result count
+                st.metric("Rows Returned", len(df))
                 
-                if error:
-                    st.markdown(f'<div class="error-box">❌ <strong>Execution Error:</strong><br>{error}</div>', unsafe_allow_html=True)
-                else:
-                    st.markdown('<div class="success-box">✅ Query executed successfully!</div>', unsafe_allow_html=True)
-                    
-                    # Display results
-                    st.subheader("📊 Query Results")
-                    
-                    if len(df) == 0:
-                        st.info("Query returned no results.")
-                    else:
-                        # Show result count
-                        st.metric("Rows Returned", len(df))
-                        
-                        # Display dataframe
-                        st.dataframe(df, use_container_width=True)
-                        
-                        # Download button
-                        csv = df.to_csv(index=False)
-                        st.download_button(
-                            label="📥 Download Results as CSV",
-                            data=csv,
-                            file_name=f"{selected_db}_results.csv",
-                            mime="text/csv"
-                        )
+                # Display dataframe
+                st.dataframe(df, use_container_width=True)
+                
+                # Download button
+                csv = df.to_csv(index=False)
+                st.download_button(
+                    label="Download Results as CSV",
+                    data=csv,
+                    file_name=f"{selected_db}_results.csv",
+                    mime="text/csv"
+                )
+    elif db_path:
+        st.info("Query generated! Click 'Generate SQL' again to see execution results.")
     else:
-        st.info("💡 Upload a database file to execute the query and see results!")
-
+        st.info("Upload a database file to execute the query and see results!")
 # Footer
 st.markdown("---")
 st.markdown("""
