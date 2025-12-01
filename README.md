@@ -46,16 +46,19 @@ SWM-Project/
 ├── requirements.txt
 ├── env.txt
 └── README.md
-
-The pipeline supports:
-
-- Dataset loading & schema extraction
-- Normalization and prompt creation
-- BiLSTM baseline and Flan-T5 transformer models
-- Interactive demo (Streamlit frontend)
-- Evaluation metrics & visualizations
 ```
---
+
+
+
+## The pipeline supports:
+
+* Dataset loading & schema extraction
+* Normalization and prompt creation
+* BiLSTM baseline and Flan-T5 transformer models
+* Interactive demo (Streamlit frontend)
+* Evaluation metrics & visualizations
+
+
 
 ## Getting Started
 
@@ -162,10 +165,10 @@ Key metrics used:
 
 ---
 ### 8.Tech Stack
-**Core**: Python, PyTorch, HuggingFace Transformers<br>
-**Data**: Spider dataset, SQLite<br>
-**Frontend**: Streamlit (CODE/frontend.py)<br>
-**Visualization**: Matplotlib, Pandas, Jupyter Notebooks
+* **Core**: Python, PyTorch, HuggingFace Transformers<br>
+* **Data**: Spider dataset, SQLite<br>
+* **Frontend**: Streamlit (CODE/frontend.py)<br>
+* **Visualization**: Matplotlib, Pandas, Jupyter Notebooks
 
 ---
 
